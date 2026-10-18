@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import TechBadge from './TechBadge.jsx';
 import { ArrowRight, ArrowUpRight, GithubIcon } from './Icons.jsx';
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index, appearIndex = 0 }) {
   const visibleStack = project.stack.slice(0, 6);
   const hidden = project.stack.length - visibleStack.length;
   const headingId = `project-${project.slug}-title`;
@@ -12,9 +12,10 @@ export default function ProjectCard({ project, index }) {
     <motion.article
       layout
       initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18 }}
       exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, delay: (appearIndex % 2) * 0.07, ease: [0.22, 1, 0.36, 1] }}
       aria-labelledby={headingId}
       className="card group relative flex h-full flex-col p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-card focus-within:border-line-strong sm:p-7"
     >

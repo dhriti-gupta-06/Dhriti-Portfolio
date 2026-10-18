@@ -82,7 +82,7 @@ export default function Contact() {
             <ContactRow icon={<MailIcon />} label="Email" href={`mailto:${profile.email}`} value={profile.email} />
             <ContactRow icon={<LinkedinIcon />} label="LinkedIn" href={profile.socials.linkedin} value="Dhriti Gupta" external />
             <ContactRow icon={<GithubIcon />} label="GitHub" href={profile.socials.github} value="dhriti-gupta-06" external />
-            <ContactRow icon={<PinIcon />} label="Based in" value={profile.location} />
+            <ContactRow icon={<PinIcon />} label="Based in" href={profile.mapsUrl} value={profile.location} external />
           </Reveal>
 
           <Reveal delay={0.08}>

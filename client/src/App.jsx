@@ -36,7 +36,7 @@ function ScrollManager() {
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="grain flex min-h-dvh flex-col overflow-x-clip">
+      <div className="page-shell grain flex min-h-dvh flex-col overflow-x-clip">
         <ScrollManager />
         <Navbar />
         <main id="main" className="flex-1 outline-none" tabIndex={-1}>

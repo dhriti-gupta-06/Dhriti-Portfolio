@@ -6,12 +6,16 @@ export const profile = {
   name: 'Dhriti Gupta',
   shortName: 'Dhriti',
   initials: 'DG',
-  designation: 'Aspiring Software Engineer | Full-Stack Developer | AI/ML Enthusiast',
+  designation: 'Aspiring Software Engineer | Full-Stack Developer | AI/ML Enthusiast | Cloud Computing Enthusiast',
   // Phrases cycled by the hero typewriter.
-  roles: ['Aspiring Software Engineer', 'Full-Stack Developer', 'AI/ML Enthusiast'],
+  roles: ['Aspiring Software Engineer', 'Full-Stack Developer', 'AI/ML Enthusiast', 'Cloud Computing Enthusiast'],
   headline:
     'I build full-stack products end to end, from React interfaces and REST APIs to the machine-learning models behind them.',
   location: 'Jaipur, Rajasthan, India',
+  locationAddress: '85, Jagdamba Colony, Dher Ka Balaji, Sikar Road, Jaipur, Rajasthan, India',
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    '85, Jagdamba Colony, Dher Ka Balaji, Sikar Road, Jaipur, Rajasthan, India',
+  )}`,
   status: 'Third-year B.Tech CSE undergraduate at JK Lakshmipat University',
   availability: 'Open to software engineering and AI/ML internships',
 
@@ -39,6 +43,6 @@ export const profile = {
     { label: 'Degree', value: 'B.Tech, Computer Science & Engineering' },
     { label: 'University', value: 'JK Lakshmipat University, Jaipur' },
     { label: 'Batch', value: '2024 – 2028' },
-    { label: 'CGPA', value: '8.54 / 10' },
+    { label: 'CGPA', value: '8.541 / 10' },
   ],
 };

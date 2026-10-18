@@ -72,8 +72,8 @@ export default function Projects() {
         ) : (
           <motion.div layout className="grid gap-5 md:grid-cols-2">
             <AnimatePresence mode="popLayout">
-              {visible.map((p) => (
-                <ProjectCard key={p.slug} project={p} index={projects.indexOf(p)} />
+              {visible.map((p, i) => (
+                <ProjectCard key={p.slug} project={p} index={projects.indexOf(p)} appearIndex={i} />
               ))}
             </AnimatePresence>
           </motion.div>

@@ -76,6 +76,16 @@
       color 300ms ease;
   }
 
+  /* Soft theme-aware washes for depth without extra assets or overflow. */
+  .page-shell {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse 80% 42% at 6% -8%, var(--glow), transparent 58%),
+      radial-gradient(ellipse 55% 38% at 100% 4%, var(--edu-soft), transparent 52%),
+      radial-gradient(ellipse 70% 32% at 78% 100%, var(--accent-soft), transparent 62%);
+    background-attachment: scroll;
+  }
+
   ::selection {
     background: var(--accent);
     color: var(--accent-ink);

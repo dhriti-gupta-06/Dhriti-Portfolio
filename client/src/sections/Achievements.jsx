@@ -33,39 +33,43 @@ export default function Achievements() {
 
         <Reveal className="mt-12">
           <h3 className="eyebrow">Certifications &amp; workshops</h3>
-          <ul className="mt-4 divide-y divide-line border-y border-line">
-            {certs.map((c) => (
-              <li key={c.id} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-4">
-                  {c.image && <img src={c.image} alt={`${c.title} certificate`} loading="lazy" className="h-12 w-16 rounded border border-line object-cover" />}
-                  <div>
-                    <p className="font-medium">{c.title}</p>
-                    {(c.issuer || c.date) && <p className="text-sm text-muted">{[c.issuer, c.date].filter(Boolean).join(' · ')}</p>}
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="chip">{c.kind}</span>
-                  <CredentialLink item={c} compact />
-                </div>
-              </li>
-            ))}
-          </ul>
         </Reveal>
+        <ul className="mt-4 divide-y divide-line border-y border-line">
+          {certs.map((c, i) => (
+            <Reveal as="li" key={c.id} delay={(i % 3) * 0.05} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                {c.image && <img src={c.image} alt={`${c.title} certificate`} loading="lazy" className="h-12 w-16 rounded border border-line object-cover" />}
+                <div>
+                  <p className="font-medium">{c.title}</p>
+                  {(c.issuer || c.date) && <p className="text-sm text-muted">{[c.issuer, c.date].filter(Boolean).join(' · ')}</p>}
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="chip">{c.kind}</span>
+                <CredentialLink item={c} compact />
+              </div>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );
 }
 
 function CredentialLink({ item, compact = false }) {
-  if (!item.url) return null;
+  // Prefer a public verification page. Fall back to a local certificate image
+  // when that is all that exists — never present a local file as an official issuer link.
+  const href = item.url || item.image;
+  if (!href) return null;
+  const label = item.url ? 'Verify credential' : 'Verify Certificate';
   return (
     <a
-      href={item.url}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-flex items-center gap-1 text-sm text-accent link-underline ${compact ? '' : 'mt-3'}`}
     >
-      Verify credential <ArrowUpRight size={14} />
+      {label} <ArrowUpRight size={14} />
       <span className="sr-only">for {item.title} (opens in a new tab)</span>
     </a>
   );

@@ -27,7 +27,7 @@ export const achievements = [
     description: 'Recognised for system design innovation.',
     date: null,
     url: null,
-    image: null,
+    image: '/images/certs/OpenAI_Academy_NxtWave.jpeg',
   },
   {
     id: 'nptel-employment-communication',
@@ -37,7 +37,7 @@ export const achievements = [
     description: 'Finished in the top 2% of candidates.',
     date: null,
     url: null,
-    image: "./public/images/certs/Employment_Communication_Course.jpg",
+    image: '/images/certs/Employment_Communication_Course.jpg',
   },
   {
     id: 'iitk-exchange',
@@ -77,6 +77,6 @@ export const achievements = [
     description: null,
     date: null,
     url: null,
-    image: null,
+    image: '/images/certs/DBMS.jpg',
   },
 ];
