@@ -120,7 +120,7 @@ export const projects = [
     ],
     contribution: ['Designed and built the ingestion, retrieval and generation pipeline, the FastAPI backend and the React interface.'],
     stack: ['Python', 'LangChain', 'ChromaDB', 'Hugging Face', 'Ollama', 'FastAPI', 'React'],
-    repo: null, // TODO(Dhriti): add the GitHub URL once the repository is public.
+    repo: 'https://github.com/dhriti-gupta-06/Document-Chat-Rag',
     live: null, // Runs a local LLM, so there is no hosted demo.
     liveNote: 'Runs a local LLM through Ollama, so there is no hosted demo.',
     disclaimer: null,
