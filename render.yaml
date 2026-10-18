@@ -1,0 +1,19 @@
+# Render Blueprint for the API (Dashboard > New > Blueprint, pick this repo).
+services:
+  - type: web
+    name: dhriti-portfolio-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false   # set the Atlas URI in the Render dashboard
+      - key: CLIENT_URL
+        sync: false   # e.g. https://dhriti-gupta.vercel.app
