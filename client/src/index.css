@@ -1,0 +1,165 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --surface-2: #eeeae3;
+  --line: rgb(23 21 15 / 0.11);
+  --line-strong: rgb(23 21 15 / 0.22);
+  --ink: #17150f;
+  --muted: #5a554d;
+  --accent: #b0521a;
+  --accent-ink: #ffffff;
+  --accent-soft: rgb(176 82 26 / 0.09);
+  --edu: #1d6b5f;
+  --edu-soft: rgb(29 107 95 / 0.1);
+  --glow: rgb(176 82 26 / 0.14);
+  --grid: rgb(23 21 15 / 0.05);
+  --shadow: 0 1px 2px rgb(23 21 15 / 0.05), 0 12px 32px -12px rgb(23 21 15 / 0.18);
+}
+
+.dark {
+  --bg: #0c0d10;
+  --surface: #131519;
+  --surface-2: #1a1d22;
+  --line: rgb(255 255 255 / 0.08);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --ink: #ece8e1;
+  --muted: #a19c94;
+  --accent: #f2a65a;
+  --accent-ink: #1b1207;
+  --accent-soft: rgb(242 166 90 / 0.1);
+  --edu: #7cc4b5;
+  --edu-soft: rgb(124 196 181 / 0.1);
+  --glow: rgb(242 166 90 / 0.13);
+  --grid: rgb(255 255 255 / 0.035);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 16px 40px -16px rgb(0 0 0 / 0.7);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-edu: var(--edu);
+  --color-edu-soft: var(--edu-soft);
+
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --shadow-card: var(--shadow);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------- Component utilities ---------- */
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+@utility eyebrow {
+  @apply font-mono text-xs tracking-[0.18em] text-muted uppercase;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-surface;
+}
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-[background-color,color,border-color,transform,filter] duration-200 select-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-accent text-accent-ink hover:brightness-110;
+}
+@utility btn-ghost {
+  @apply btn border border-line-strong text-ink hover:border-accent hover:text-accent;
+}
+@utility chip {
+  @apply inline-flex items-center rounded-full border border-line px-2.5 py-1 font-mono text-[11px] leading-none text-muted;
+}
+@utility link-underline {
+  @apply underline decoration-line-strong decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent;
+}
+
+@layer components {
+  /* Faint blueprint grid used behind the hero */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0.55ch;
+    height: 1.1em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: var(--accent);
+    animation: caret-blink 1.1s steps(1) infinite;
+  }
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Subtle film grain to keep large flat areas from looking sterile */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

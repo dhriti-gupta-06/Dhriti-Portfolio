@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhriti Gupta — Software Engineer · Full-Stack · AI/ML</title>
+    <meta
+      name="description"
+      content="Portfolio of Dhriti Gupta, B.Tech CSE student at JK Lakshmipat University building full-stack web applications and machine-learning systems."
+    />
+    <meta name="author" content="Dhriti Gupta" />
+    <meta property="og:title" content="Dhriti Gupta — Software Engineer · Full-Stack · AI/ML" />
+    <meta property="og:description" content="Full-stack and AI/ML projects, experience and resume." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/dhriti-gupta.jpg" />
+    <meta name="theme-color" content="#0c0d10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f3ee" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Apply the saved or system theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved ? saved === 'dark' : !window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>This portfolio needs JavaScript enabled.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
