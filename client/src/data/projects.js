@@ -20,6 +20,7 @@ export const projects = [
     title: 'NeuralStroke',
     subtitle: 'Clinical risk intelligence platform',
     featured: true,
+    image: '/projects/NeuralStroke.png',
     categories: ['ml', 'fullstack'],
     summary:
       'A full-stack stroke-risk platform that runs seven trained classifiers on patient health data, with LightGBM as the production model and role-based access for doctors and admins.',
@@ -50,6 +51,7 @@ export const projects = [
     title: 'SalesCast AI',
     subtitle: 'Prophet sales forecasting system',
     featured: true,
+    image: '/projects/SalesForecast.png',
     categories: ['ml', 'fullstack'],
     summary:
       'A forecasting web app that serves 500 group-wise Prophet models (one per product, department, category, outlet and state combination) behind a JWT-secured Flask API and a React analytics dashboard.',
@@ -79,6 +81,7 @@ export const projects = [
     title: 'FloatChat',
     subtitle: 'Conversational ocean-data explorer',
     featured: true,
+    image: '/projects/FloatChat.png',
     categories: ['frontend', 'genai'],
     summary:
       'A Next.js 14 + TypeScript prototype for exploring ARGO-style ocean float data through a chat assistant, a 3D globe, maps and predictive charts.',
@@ -107,6 +110,7 @@ export const projects = [
     title: 'DocuMind',
     subtitle: 'Retrieval-augmented PDF assistant',
     featured: false,
+    image: '/projects/DocuMind.png',
     categories: ['genai', 'fullstack'],
     summary:
       'A document assistant that answers natural-language questions about uploaded PDFs using retrieval-augmented generation on a locally hosted LLM.',
@@ -130,6 +134,7 @@ export const projects = [
     title: 'To-Do App',
     subtitle: 'Vanilla JavaScript task manager',
     featured: false,
+    image: '/projects/ToDo.png',
     categories: ['frontend'],
     summary:
       'A responsive task manager built with plain HTML, CSS and JavaScript, with filters, counters and localStorage persistence.',

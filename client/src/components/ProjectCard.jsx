@@ -28,7 +28,7 @@ export default function ProjectCard({ project, index, appearIndex = 0 }) {
       exit={{ opacity: 0, scale: 0.97 }}
       style={shouldReduceMotion ? undefined : { y: entryY, opacity: cardOpacity }}
       aria-labelledby={headingId}
-      className="card group relative flex h-full flex-col p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-card focus-within:border-line-strong sm:p-7"
+      className="card group relative flex h-full flex-col p-6 transition-[border-color,box-shadow,transform,translate] duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-card focus-within:border-line-strong sm:p-7"
     >
       {/* Accent rule that tracks scroll progress and expands further on hover */}
       <motion.span
@@ -41,6 +41,17 @@ export default function ProjectCard({ project, index, appearIndex = 0 }) {
         <span className="font-mono text-xs text-muted">{String(index + 1).padStart(2, '0')}</span>
         {project.live && <span className="chip border-accent/40 text-accent">Live</span>}
       </div>
+
+      {project.image && (
+        <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-xl border border-line bg-surface-2 transition-colors duration-300 group-hover:border-line-strong">
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            loading="lazy"
+            className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        </div>
+      )}
 
       <h3 id={headingId} className="mt-5 font-serif text-3xl leading-tight">
         {project.title}
