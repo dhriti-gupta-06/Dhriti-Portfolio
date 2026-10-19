@@ -68,7 +68,7 @@ function HonorCard({ item, index }) {
     <motion.li
       ref={cardRef}
       style={shouldReduceMotion ? undefined : { y, opacity }}
-      className="card group flex gap-5 p-6 transition-colors hover:border-line-strong shadow-card"
+      className="card group flex gap-5 p-6 shadow-card transition-[border-color,box-shadow,transform,translate] duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-card focus-within:border-line-strong"
     >
       <motion.span
         style={shouldReduceMotion ? undefined : { scale: badgeScale, rotate: badgeRotate }}
