@@ -1,6 +1,5 @@
 import { useId, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import Reveal from '../components/Reveal.jsx';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { AlertIcon, CheckIcon, GithubIcon, LinkedinIcon, MailIcon, PinIcon } from '../components/Icons.jsx';
 import { profile } from '../data/profile.js';
@@ -17,6 +16,19 @@ export default function Contact() {
   const [serverMessage, setServerMessage] = useState('');
   const inFlight = useRef(false);
   const formRef = useRef(null);
+  const sectionRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'start 0.62'],
+  });
+
+  const leftY = useTransform(scrollYProgress, [0, 1], [30, 0]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
+  const formY = useTransform(scrollYProgress, [0, 1], [45, 0]);
+  const formOpacity = useTransform(scrollYProgress, [0, 1], [0.25, 1]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +82,16 @@ export default function Contact() {
   const submitting = status === 'submitting';
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="border-t border-line py-20 md:py-28">
+    <section ref={sectionRef} id="contact" aria-labelledby="contact-title" className="relative border-t border-line py-20 md:py-28 overflow-hidden">
+      {/* Background ambient glow responding to scroll */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-24 -right-24 size-96 rounded-full blur-3xl opacity-50"
+        style={{
+          background: 'radial-gradient(circle, var(--glow), transparent 70%)',
+          y: shouldReduceMotion ? 0 : glowY,
+        }}
+      />
       <div className="container-page">
         <SectionHeading index="07" eyebrow="Contact" id="contact-title" title={<>Let&rsquo;s build <em>something.</em></>}>
           Internship opportunities, collaboration ideas or questions about a project. Send a message here and
@@ -78,15 +99,20 @@ export default function Contact() {
         </SectionHeading>
 
         <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <Reveal className="space-y-4">
-            <ContactRow icon={<MailIcon />} label="Email" href={`mailto:${profile.email}`} value={profile.email} />
-            <ContactRow icon={<LinkedinIcon />} label="LinkedIn" href={profile.socials.linkedin} value="Dhriti Gupta" external />
-            <ContactRow icon={<GithubIcon />} label="GitHub" href={profile.socials.github} value="dhriti-gupta-06" external />
-            <ContactRow icon={<PinIcon />} label="Based in" href={profile.mapsUrl} value={profile.location} external />
-          </Reveal>
+          <motion.div
+            style={shouldReduceMotion ? undefined : { y: leftY, opacity: leftOpacity }}
+            className="space-y-4"
+          >
+            <ContactRow icon={<MailIcon />} label="Email" href={`mailto:${profile.email}`} value={profile.email} index={0} scrollProgress={scrollYProgress} />
+            <ContactRow icon={<LinkedinIcon />} label="LinkedIn" href={profile.socials.linkedin} value="Dhriti Gupta" external index={1} scrollProgress={scrollYProgress} />
+            <ContactRow icon={<GithubIcon />} label="GitHub" href={profile.socials.github} value="dhriti-gupta-06" external index={2} scrollProgress={scrollYProgress} />
+            <ContactRow icon={<PinIcon />} label="Based in" href={profile.mapsUrl} value={profile.location} external index={3} scrollProgress={scrollYProgress} />
+          </motion.div>
 
-          <Reveal delay={0.08}>
-            <form ref={formRef} noValidate onSubmit={onSubmit} className="card space-y-5 p-6 sm:p-8" aria-busy={submitting}>
+          <motion.div
+            style={shouldReduceMotion ? undefined : { y: formY, opacity: formOpacity }}
+          >
+            <form ref={formRef} noValidate onSubmit={onSubmit} className="card space-y-5 p-6 sm:p-8 shadow-card" aria-busy={submitting}>
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Name" name="name" autoComplete="name" value={values.name} error={touched.name && errors.name} onChange={onChange} onBlur={onBlur} maxLength={CONTACT_LIMITS.name.max} disabled={submitting} />
                 <Field label="Email" name="email" type="email" autoComplete="email" inputMode="email" value={values.email} error={touched.email && errors.email} onChange={onChange} onBlur={onBlur} maxLength={CONTACT_LIMITS.email.max} disabled={submitting} />
@@ -137,7 +163,7 @@ export default function Contact() {
                 </AnimatePresence>
               </div>
             </form>
-          </Reveal>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -178,15 +204,26 @@ function Field({ label, name, multiline = false, error, hint, ...props }) {
   );
 }
 
-function ContactRow({ icon, label, value, href, external }) {
+function ContactRow({ icon, label, value, href, external, index = 0, scrollProgress }) {
+  const shouldReduceMotion = useReducedMotion();
+  const rowX = useTransform(
+    scrollProgress ?? { get: () => 1 },
+    [0.08 + index * 0.08, 0.65 + index * 0.08],
+    [-18, 0],
+    { clamp: true }
+  );
+
   const content = (
-    <>
+    <motion.div
+      style={shouldReduceMotion || !scrollProgress ? undefined : { x: rowX }}
+      className="flex items-center gap-4 w-full"
+    >
       <span className="grid size-11 shrink-0 place-items-center rounded-full border border-line text-accent transition-colors group-hover:border-accent">{icon}</span>
       <span className="min-w-0">
         <span className="eyebrow block">{label}</span>
         <span className="mt-0.5 block truncate font-medium">{value}</span>
       </span>
-    </>
+    </motion.div>
   );
   if (!href) return <div className="flex items-center gap-4">{content}</div>;
   return (
@@ -200,3 +237,4 @@ function ContactRow({ icon, label, value, href, external }) {
     </a>
   );
 }
+

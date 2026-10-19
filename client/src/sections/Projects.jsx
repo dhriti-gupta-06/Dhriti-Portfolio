@@ -1,11 +1,20 @@
-import { useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading.jsx';
 import ProjectCard from '../components/ProjectCard.jsx';
 import { projectCategories, projects } from '../data/projects.js';
 
 export default function Projects() {
   const [filter, setFilter] = useState('all');
+  const sectionRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const glowY = useTransform(scrollYProgress, [0, 1], [-40, 50]);
 
   const counts = useMemo(
     () =>
@@ -25,7 +34,16 @@ export default function Projects() {
   const activeLabel = projectCategories.find((c) => c.id === filter)?.label;
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="border-t border-line py-20 md:py-28">
+    <section ref={sectionRef} id="projects" aria-labelledby="projects-title" className="relative border-t border-line py-20 md:py-28 overflow-hidden">
+      {/* Background ambient glow responding to scroll */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-24 -left-32 size-[32rem] rounded-full blur-3xl opacity-50"
+        style={{
+          background: 'radial-gradient(circle, var(--glow), transparent 70%)',
+          y: shouldReduceMotion ? 0 : glowY,
+        }}
+      />
       <div className="container-page">
         <SectionHeading index="03" eyebrow="Projects" id="projects-title" title={<>Selected <em>work.</em></>}>
           Each project links to its source code, a live deployment where one exists, and a case study describing

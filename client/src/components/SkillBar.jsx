@@ -1,16 +1,27 @@
 import { useId, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion, useTransform } from 'framer-motion';
 import { levelLabel } from '../data/skills.js';
 
 /**
- * Animated self-assessed proficiency bar. The tooltip opens on hover AND on
- * keyboard focus, and the same information is in the accessible name, so
- * nothing depends on hover alone.
+ * Animated self-assessed proficiency bar linked continuously to scroll progress.
+ * The tooltip opens on hover AND on keyboard focus, maintaining full accessibility.
  */
-export default function SkillBar({ name, level, note, delay = 0, inView = true }) {
+export default function SkillBar({ name, level, note, index = 0, groupProgress }) {
   const [show, setShow] = useState(false);
   const tipId = useId();
   const label = levelLabel(level);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Scroll-linked continuous fill progress
+  const startProgress = Math.min(0.12 + index * 0.05, 0.45);
+  const endProgress = Math.min(0.68 + index * 0.05, 0.95);
+
+  const fillScaleX = useTransform(
+    groupProgress ?? { get: () => 1 },
+    [startProgress, endProgress],
+    [0, 1],
+    { clamp: true }
+  );
 
   return (
     <li
@@ -38,10 +49,11 @@ export default function SkillBar({ name, level, note, delay = 0, inView = true }
         <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface-2">
           <motion.div
             className="h-full origin-left rounded-full bg-accent transition-[filter] group-hover:brightness-110"
-            style={{ width: `${level}%` }}
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: inView ? 1 : 0 }}
-            transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              width: `${level}%`,
+              scaleX: shouldReduceMotion || !groupProgress ? 1 : fillScaleX,
+              transformOrigin: 'left',
+            }}
           />
         </div>
       </div>
@@ -60,3 +72,4 @@ export default function SkillBar({ name, level, note, delay = 0, inView = true }
     </li>
   );
 }
+

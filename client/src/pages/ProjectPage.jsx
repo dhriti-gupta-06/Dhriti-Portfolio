@@ -102,7 +102,7 @@ export default function ProjectPage() {
 
 function Block({ title, delay = 0, children }) {
   return (
-    <Reveal as="section" immediate delay={delay} className="grid gap-4 md:grid-cols-[12rem_1fr] md:gap-8">
+    <Reveal as="section" delay={delay} className="grid gap-4 md:grid-cols-[12rem_1fr] md:gap-8">
       <h2 className="eyebrow pt-1">{title}</h2>
       <div>{children}</div>
     </Reveal>

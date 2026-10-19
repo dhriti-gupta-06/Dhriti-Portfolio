@@ -1,16 +1,57 @@
-import Reveal from '../components/Reveal.jsx';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { profile } from '../data/profile.js';
 import { PinIcon } from '../components/Icons.jsx';
 
 export default function About() {
+  const sectionRef = useRef(null);
+  const factsRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress: sectionProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const { scrollYProgress: factsProgress } = useScroll({
+    target: factsRef,
+    offset: ['start end', 'start 0.72'],
+  });
+
+  // Photo parallax & entrance transforms
+  const photoY = useTransform(sectionProgress, [0, 1], [25, -25]);
+  const photoScale = useTransform(sectionProgress, [0.05, 0.45], [0.96, 1]);
+  const photoOpacity = useTransform(sectionProgress, [0.05, 0.35], [0.25, 1]);
+  const glowY = useTransform(sectionProgress, [0, 1], [-20, 35]);
+
+  // Bio entrance transforms
+  const bioY = useTransform(sectionProgress, [0.1, 0.45], [26, 0]);
+  const bioOpacity = useTransform(sectionProgress, [0.1, 0.45], [0.2, 1]);
+
+  // Facts grid entrance transforms
+  const factsY = useTransform(factsProgress, [0, 1], [24, 0]);
+  const factsOpacity = useTransform(factsProgress, [0, 1], [0.25, 1]);
+
   return (
-    <section id="about" aria-labelledby="about-title" className="py-20 md:py-28">
+    <section ref={sectionRef} id="about" aria-labelledby="about-title" className="relative py-20 md:py-28 overflow-hidden">
       <div className="container-page">
         <SectionHeading index="01" eyebrow="About" id="about-title" title={<>Engineering student, <em>product builder.</em></>} />
 
         <div className="grid gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-16">
-          <Reveal className="mx-auto w-full max-w-sm lg:mx-0">
+          <motion.div
+            style={shouldReduceMotion ? undefined : { y: photoY, scale: photoScale, opacity: photoOpacity }}
+            className="relative mx-auto w-full max-w-sm lg:mx-0"
+          >
+            {/* Ambient decorative glow behind portrait */}
+            <motion.div
+              aria-hidden="true"
+              style={{
+                y: shouldReduceMotion ? 0 : glowY,
+                background: 'radial-gradient(circle, var(--glow), transparent 70%)',
+              }}
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl blur-2xl opacity-75"
+            />
             <figure className="relative">
               <div className="card overflow-hidden p-2 shadow-card">
                 <picture>
@@ -33,18 +74,24 @@ export default function About() {
                 <span className="font-mono text-xs">3rd year · CSE</span>
               </figcaption>
             </figure>
-          </Reveal>
+          </motion.div>
 
           <div>
-            <Reveal delay={0.05} className="space-y-5 text-lg leading-relaxed text-pretty">
+            <motion.div
+              style={shouldReduceMotion ? undefined : { y: bioY, opacity: bioOpacity }}
+              className="space-y-5 text-lg leading-relaxed text-pretty"
+            >
               {profile.bio.map((para, i) => (
                 <p key={i} className={i === 0 ? '' : 'text-muted'}>
                   {para}
                 </p>
               ))}
-            </Reveal>
+            </motion.div>
 
-            <Reveal delay={0.12}>
+            <motion.div
+              ref={factsRef}
+              style={shouldReduceMotion ? undefined : { y: factsY, opacity: factsOpacity }}
+            >
               <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
                 {profile.quickFacts.map((f) => (
                   <div key={f.label} className="bg-surface p-5">
@@ -57,7 +104,7 @@ export default function About() {
                 <span className="font-medium text-ink">Current status:</span> {profile.status}.{' '}
                 {profile.availability}.
               </p>
-            </Reveal>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,28 +1,40 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import TechBadge from './TechBadge.jsx';
 import { ArrowRight, ArrowUpRight, GithubIcon } from './Icons.jsx';
 
 export default function ProjectCard({ project, index, appearIndex = 0 }) {
+  const cardRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
   const visibleStack = project.stack.slice(0, 6);
   const hidden = project.stack.length - visibleStack.length;
   const headingId = `project-${project.slug}-title`;
 
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start end', 'start 0.62'],
+  });
+
+  const isOddCol = appearIndex % 2 === 1;
+  const entryY = useTransform(scrollYProgress, [0, 1], [isOddCol ? 46 : 28, 0]);
+  const cardOpacity = useTransform(scrollYProgress, [0, 1], [0.25, 1]);
+  const lineWidth = useTransform(scrollYProgress, [0.2, 0.9], ['14px', '40px']);
+
   return (
     <motion.article
+      ref={cardRef}
       layout
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
       exit={{ opacity: 0, scale: 0.97 }}
-      transition={{ duration: 0.45, delay: (appearIndex % 2) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      style={shouldReduceMotion ? undefined : { y: entryY, opacity: cardOpacity }}
       aria-labelledby={headingId}
       className="card group relative flex h-full flex-col p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-card focus-within:border-line-strong sm:p-7"
     >
-      {/* Accent rule that grows on hover */}
-      <span
+      {/* Accent rule that tracks scroll progress and expands further on hover */}
+      <motion.span
         aria-hidden="true"
-        className="absolute top-0 left-6 h-px w-10 bg-accent transition-[width] duration-500 group-hover:w-[calc(100%-3rem)] sm:left-7"
+        style={{ width: shouldReduceMotion ? '2.5rem' : lineWidth }}
+        className="absolute top-0 left-6 h-px bg-accent transition-[width] duration-500 group-hover:w-[calc(100%-3rem)] sm:left-7"
       />
 
       <div className="flex items-start justify-between gap-4">
@@ -65,3 +77,4 @@ export default function ProjectCard({ project, index, appearIndex = 0 }) {
     </motion.article>
   );
 }
+

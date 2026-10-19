@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import ThemeToggle from './ThemeToggle.jsx';
 import { CloseIcon, MenuIcon } from './Icons.jsx';
 import { profile } from '../data/profile.js';
@@ -21,6 +21,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
   const active = useActiveSection(pathname === '/' ? SECTION_IDS : []);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, {
+    stiffness: 400,
+    damping: 40,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -132,6 +140,11 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-[2px] bg-accent origin-left"
+        style={{ scaleX: shouldReduceMotion ? 0 : progressScaleX }}
+      />
     </header>
   );
 }
