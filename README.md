@@ -14,9 +14,9 @@ Built as an end-to-end **MERN** application:
 - **Server:** Production-ready **Node.js + Express 5** REST API hosted on **Render**, featuring input sanitization, rate-limiting, security headers via Helmet, and resume streaming.
 - **Database:** Cloud-hosted **MongoDB Atlas** storing verified contact submissions through **Mongoose 9** schemas.
 
-- **Live site:** [https://dhriti-portfolio-one.vercel.app/](https://dhriti-portfolio-one.vercel.app/)
+<!-- - **Live site:** [https://dhriti-portfolio-one.vercel.app/](https://dhriti-portfolio-one.vercel.app/)
 - **API:** [https://dhriti-portfolio-api.onrender.com/api/health](https://dhriti-portfolio-api.onrender.com/api/health)
-- **Repository:** [https://github.com/dhriti-gupta-06/Dhriti-Portfolio](https://github.com/dhriti-gupta-06/Dhriti-Portfolio)
+- **Repository:** [https://github.com/dhriti-gupta-06/Dhriti-Portfolio](https://github.com/dhriti-gupta-06/Dhriti-Portfolio) -->
 
 ---
 
@@ -166,10 +166,12 @@ dhriti-portfolio/
 4. **[DocuMind](https://github.com/dhriti-gupta-06/Document-Chat-Rag)** — Retrieval-Augmented Document Assistant
    - Stack: Python, LangChain, ChromaDB, HuggingFace, Streamlit
    - High-precision Q&A over local documents using RAG vector similarity and local language models.
+   - [GitHub Repository](https://github.com/dhriti-gupta-06/Document-Chat-Rag)
 
 5. **[TaskFlow](https://dhriti-gupta-06.github.io/TO-DO-App/)** — Responsive Task Management
    - Stack: JavaScript, HTML5, CSS3, LocalStorage
    - Filterable task tracking with local persistence and accessible UI interactions.
+   - [GitHub Repository](https://github.com/dhriti-gupta-06/TO-DO-App)
 
 ---
 
