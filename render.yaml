@@ -16,4 +16,4 @@ services:
       - key: MONGODB_URI
         sync: false   # set the Atlas URI in the Render dashboard
       - key: CLIENT_URL
-        sync: false   # e.g. https://dhriti-gupta.vercel.app
+        sync: false   # e.g. https://dhriti-portfolio-one.vercel.app

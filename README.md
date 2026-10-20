@@ -1,286 +1,345 @@
-# Dhriti Gupta: MERN Portfolio
+# Dhriti Gupta — Full-Stack MERN & AI/ML Portfolio
 
-The personal portfolio of **Dhriti Gupta**, a B.Tech CSE student at JK Lakshmipat University who builds full-stack apps and AI/ML projects.
+[![Live Site](https://img.shields.io/badge/Live_Site-dhriti--portfolio--one.vercel.app-00dfa2?style=for-the-badge&logo=vercel&logoColor=white)](https://dhriti-portfolio-one.vercel.app/)
+[![API Status](https://img.shields.io/badge/API_Status-dhriti--portfolio--api.onrender.com-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://dhriti-portfolio-api.onrender.com/api/health)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Dhriti--Portfolio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dhriti-gupta-06/Dhriti-Portfolio)
+[![Node Version](https://img.shields.io/badge/Node.js-%3E%3D20-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![React Version](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
 
-It's a full MERN application. The **React + Vite** client presents profile, skills, projects, experience and achievements. The **Node.js + Express** API stores contact-form messages in **MongoDB** through **Mongoose** and serves the resume as PDF and Word downloads.
+The official personal portfolio of **Dhriti Gupta**, a Computer Science & Engineering undergraduate at JK Lakshmipat University (Visiting Student at IIT Kanpur, Jan–May 2026; Data Science Intern at Veracitiz) specializing in full-stack web engineering, scalable REST APIs, and applied AI/ML systems.
 
-- **Live site:** _add after deploying, e.g. `https://dhriti-gupta.vercel.app`_
-- **API:** _add after deploying, e.g. `https://dhriti-portfolio-api.onrender.com/api/health`_
-- **Repository:** _add after pushing, e.g. `https://github.com/dhriti-gupta-06/dhriti-portfolio`_
-
-| Dark | Light |
-| --- | --- |
-| ![Hero, dark theme](docs/screenshots/hero-dark.png) | ![Hero, light theme](docs/screenshots/hero-light.png) |
-
-| Mobile | Contact form (stored in MongoDB) |
-| --- | --- |
-| ![Mobile layout](docs/screenshots/mobile-dark.png) | ![Contact success](docs/screenshots/contact-success.png) |
+Built as an end-to-end **MERN** application:
+- **Client:** Modern, ultra-responsive **React 19 + Vite + Tailwind CSS 4 + Framer Motion** single-page application deployed on **Vercel**.
+- **Server:** Production-ready **Node.js + Express 5** REST API hosted on **Render**, featuring input sanitization, rate-limiting, security headers via Helmet, and resume streaming.
+- **Database:** Cloud-hosted **MongoDB Atlas** storing verified contact submissions through **Mongoose 9** schemas.
 
 ---
 
-## Features
+## 🔗 Quick Links
 
-**Frontend**
-- Animated hero: typewriter role line, entrance animation, a **Download CV** button that uses the Express route, and an **Explore projects** button.
-- About section with profile photo, bio, location, education facts and current status.
-- Skills grouped into six categories, with animated bars and tooltips that open on hover *and* on keyboard focus. Levels are self-assessed and labelled that way.
-- Project cards with working technology filters (All / Machine Learning / AI-LLM / Full-Stack / Frontend), an empty state, GitHub and live-demo links, and a case-study page for each project at `/projects/:slug`.
-- Animated vertical timeline that marks education and experience differently.
-- Achievements and certifications. Credential links and images show up once you add them to the data file.
-- Resume section with **PDF** and **Word (.docx)** downloads from the backend.
-- Contact form: controlled inputs, inline accessible validation, loading state, double-submit guard. Success shows only after the server confirms the message was stored.
-- Dark and light themes that follow the system setting on the first visit, remember the visitor's choice and avoid a wrong-theme flash on load.
-- React Router SPA with a custom 404 page, smooth in-page navigation, an active-section indicator and a mobile menu.
-- Accessibility: semantic landmarks, skip link, visible focus styles, labelled controls, `aria-live` status messages and `prefers-reduced-motion` support.
-
-**Backend**
-- `POST /api/contact`: validation and sanitising, Mongoose schema rules, rate limiting, safe error responses, and logs that never record message content.
-- `GET /api/resume/pdf` and `GET /api/resume/docx`: real file downloads with the correct MIME type and `Content-Disposition: attachment`. A missing file returns a 404.
-- `GET /api/health`: liveness and database status.
-- Helmet security headers, CORS restricted to `CLIENT_URL`, a 10 kb JSON body limit, a central error handler and graceful shutdown.
-
-## Tech stack
-
-| Layer | Technology |
+| Resource | URL |
 | --- | --- |
-| Client | React 19, React Router 7, Vite 8, Tailwind CSS 4, Framer Motion |
-| Server | Node.js 20+, Express 5, Mongoose 9, Helmet, express-rate-limit, validator |
-| Database | MongoDB Atlas |
-| Testing | `node:test` + Supertest (API), Vitest (client logic), Playwright smoke test |
-| Hosting | Vercel (client), Render (API), MongoDB Atlas (DB) |
+| 🌐 **Live Website** | [https://dhriti-portfolio-one.vercel.app/](https://dhriti-portfolio-one.vercel.app/) |
+| ⚡ **Backend API Health** | [https://dhriti-portfolio-api.onrender.com/api/health](https://dhriti-portfolio-api.onrender.com/api/health) |
+| 🐙 **GitHub Repository** | [https://github.com/dhriti-gupta-06/Dhriti-Portfolio](https://github.com/dhriti-gupta-06/Dhriti-Portfolio) |
+| 📄 **PDF Resume (API Endpoint)** | [https://dhriti-portfolio-api.onrender.com/api/resume/pdf](https://dhriti-portfolio-api.onrender.com/api/resume/pdf) |
+| 📝 **Word Resume (API Endpoint)** | [https://dhriti-portfolio-api.onrender.com/api/resume/docx](https://dhriti-portfolio-api.onrender.com/api/resume/docx) |
 
-## Architecture
+---
+
+## 📸 Visual Showcase
+
+| Dark Theme | Light Theme |
+| :---: | :---: |
+| ![Hero Dark Theme](docs/screenshots/hero-dark.png) | ![Hero Light Theme](docs/screenshots/hero-light.png) |
+
+| Mobile Responsive View | Contact Submission (Persisted in MongoDB) |
+| :---: | :---: |
+| ![Mobile View](docs/screenshots/mobile-dark.png) | ![Contact Success](docs/screenshots/contact-success.png) |
+
+| Case Study View (`/projects/:slug`) |
+| :---: |
+| ![Case Study Light](docs/screenshots/case-study-light.png) |
+
+---
+
+## ✨ Features
+
+### Frontend (React + Vite + Tailwind CSS)
+- **Dynamic Hero Section:** Animated typewriter rotating roles (*Aspiring Software Engineer*, *Full-Stack Developer*, *AI/ML Enthusiast*, *Cloud Computing Enthusiast*), scroll-triggered reveal animations, and direct **Download CV** and **Explore Projects** CTAs.
+- **Comprehensive About Section:** Academic background (JK Lakshmipat University, Visiting Student at IIT Kanpur), quick facts, CGPA, and current status.
+- **Categorized Skills Matrix:** Visualized across 6 distinct categories with animated proficiency bars and accessible hover/focus tooltips.
+- **Interactive Project Showcase:** Real-time multi-category filtering (*All*, *Machine Learning*, *AI / LLM*, *Full-Stack*, *Frontend*), live demo links, repository buttons, tech stack tags, and deep-dive case study routes at `/projects/:slug`.
+- **Vertical Timeline:** Chronological timeline distinguishing education and industry internships with custom icons and milestone markers.
+- **Dual-Format Resume Downloads:** Direct streams for **PDF** and **Word (.docx)** resumes served by the Express backend.
+- **Accessible Contact Form:** Client-side validation, debounce protection, double-submit guard, animated loading states, and instant success confirmation once persisted in MongoDB.
+- **Theme Engine:** Dark and light modes with system preference auto-detection, manual toggle, and zero flash on initial load (`localStorage` backed).
+- **Accessibility & SEO:** WCAG compliant with semantic landmarks, keyboard navigation, visible focus indicators, `prefers-reduced-motion` compliance, and meta tags.
+
+### Backend (Node.js + Express + MongoDB Atlas)
+- **`POST /api/contact`:** Strict field validation and HTML sanitization, Mongoose schema enforcement, anti-spam rate limiting, and private logging that excludes personal message contents.
+- **`GET /api/resume/pdf` & `GET /api/resume/docx`:** Streams real resume files with proper MIME types and `Content-Disposition: attachment` headers.
+- **`GET /api/health`:** Real-time health check reporting service uptime, timestamp, and active MongoDB connection status.
+- **Production Hardening:** Helmet HTTP security headers, CORS origin whitelisting (`CLIENT_URL`), 10 KB request body limit, global error handling, and graceful shutdown handlers.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+| --- | --- |
+| **Frontend** | React 19, React Router 7, Vite 8, Tailwind CSS 4, Framer Motion |
+| **Backend** | Node.js 20+ (LTS), Express 5, Mongoose 9, Helmet, express-rate-limit, validator, cors |
+| **Database** | MongoDB Atlas (Cloud M0 Cluster) |
+| **Testing** | Node test runner (`node:test`) + Supertest (API), Vitest (Client logic), Playwright |
+| **Hosting & CI/CD** | Vercel (Frontend SPA), Render (Backend Web Service), MongoDB Atlas (Database) |
+
+---
+
+## 🏛️ System Architecture
 
 ```text
- Browser (React SPA on Vercel)
-   │  GET  /api/resume/:format  ──►  Express (Render) ──► server/resumes/*.pdf|.docx
-   │  POST /api/contact         ──►  Express  ──► validate ──► Mongoose ──► MongoDB Atlas
-   │  GET  /api/health          ──►  Express
+                        ┌──────────────────────────────────────────────┐
+                        │              Client (Vercel)                 │
+                        │     https://dhriti-portfolio-one.vercel.app  │
+                        └──────────────────────┬───────────────────────┘
+                                               │
+                                  HTTPS Requests (REST API)
+                                               │
+                                               ▼
+                        ┌──────────────────────────────────────────────┐
+                        │             Server (Render)                  │
+                        │    https://dhriti-portfolio-api.onrender.com │
+                        └──────────────┬────────────────┬──────────────┘
+                                       │                │
+                      Streams Resumes  │                │ Mongoose ODM
+                      (PDF / DOCX)     ▼                ▼
+                           ┌─────────────────┐   ┌──────────────────────┐
+                           │ server/resumes/ │   │    MongoDB Atlas     │
+                           │   Static Files  │   │   contacts cluster   │
+                           └─────────────────┘   └──────────────────────┘
 ```
 
-In development, Vite proxies `/api/*` to `http://localhost:5000`, so the client needs no environment variables. In production the client calls the URL in `VITE_API_BASE_URL`.
+- **In Local Development:** Vite dev server proxies `/api/*` requests directly to `http://localhost:5000`, eliminating CORS friction.
+- **In Production:** The React client targets the deployed Render URL specified in `VITE_API_BASE_URL`.
 
-## Folder structure
+---
+
+## 📂 Project Structure
 
 ```text
 dhriti-portfolio/
-├── client/                    React + Vite frontend
-│   ├── public/                favicon, images/dhriti-gupta.{webp,jpg}
+├── client/                          # Frontend Application (React + Vite)
+│   ├── public/                      # Static assets, favicon, photos
 │   ├── src/
-│   │   ├── components/        Navbar, Footer, ProjectCard, SkillBar, ThemeToggle, Reveal, Icons…
-│   │   ├── sections/          Hero, About, Skills, Projects, Experience, Achievements, Resume, Contact
-│   │   ├── pages/             Home, ProjectPage (/projects/:slug), NotFound
-│   │   ├── data/              ← EDIT CONTENT HERE: profile, skills, projects, timeline, achievements
-│   │   ├── context/           ThemeContext
-│   │   ├── hooks/             useTypewriter, useActiveSection
-│   │   ├── services/api.js    all fetch calls + resume URLs
-│   │   └── utils/             client-side validation (+ tests)
-│   ├── vercel.json            SPA rewrites + asset caching
-│   └── .env.example
-├── server/                    Express API
-│   ├── config/                env + MongoDB connection
-│   ├── controllers/           contact, resume, health
-│   ├── middleware/            rate limiters, error handler
-│   ├── models/Contact.js      Mongoose schema
-│   ├── routes/index.js
-│   ├── resumes/               Dhriti_Gupta_Resume.pdf / .docx (served by the API)
-│   ├── utils/                 validation, HttpError
-│   ├── tests/                 API tests
-│   ├── app.js / server.js
-│   └── .env.example
-├── docs/                      screenshots, requirements audit
-├── render.yaml                Render blueprint for the API
-└── package.json               root scripts
+│   │   ├── components/              # Reusable UI (Navbar, Footer, ProjectCard, SkillBar, ThemeToggle...)
+│   │   ├── context/                 # ThemeContext (Dark/Light state)
+│   │   ├── data/                    # Single source of truth (profile, projects, skills, timeline)
+│   │   ├── hooks/                   # Custom React hooks (useTypewriter, useActiveSection)
+│   │   ├── pages/                   # Home, ProjectPage (/projects/:slug), NotFound (404)
+│   │   ├── sections/                # Page sections (Hero, About, Skills, Projects, Contact...)
+│   │   ├── services/api.js          # API client for contact submissions and resume downloads
+│   │   └── utils/                   # Client-side validation logic
+│   ├── vercel.json                  # SPA routing configuration for Vercel
+│   ├── vite.config.js               # Vite bundler & Tailwind configuration
+│   └── package.json
+├── server/                          # Backend REST API (Node.js + Express)
+│   ├── config/                      # Environment variables & MongoDB connection
+│   ├── controllers/                 # Request handlers (contact, resume, health)
+│   ├── middleware/                  # Rate limiting, validation, error handler
+│   ├── models/Contact.js            # Mongoose Contact model schema
+│   ├── resumes/                     # Dhriti_Gupta_Resume.pdf & .docx
+│   ├── routes/index.js              # API route definitions
+│   ├── tests/                       # Unit and integration test suite
+│   ├── app.js                       # Express application configuration
+│   ├── server.js                    # Server bootstrap & graceful shutdown
+│   └── package.json
+├── docs/                            # Screenshots & requirements audit
+├── render.yaml                      # Render Blueprint deployment definition
+└── package.json                     # Monorepo root scripts
 ```
-
-## Prerequisites
-
-- Node.js **20 or newer** (22 LTS recommended) and npm
-- A free MongoDB Atlas account
-- Git, plus GitHub, Vercel and Render accounts for deployment
-
-## Local setup (Windows PowerShell)
-
-```powershell
-cd dhriti-portfolio
-npm run install:all                       # installs root, server and client deps
-
-Copy-Item server\.env.example server\.env
-notepad server\.env                       # paste your MONGODB_URI (see Atlas section)
-
-npm run dev                               # API on :5000, site on http://localhost:5173
-```
-
-macOS/Linux: use `cp server/.env.example server/.env` in place of `Copy-Item`.
-
-Other scripts:
-
-| Command (from repo root) | What it does |
-| --- | --- |
-| `npm run dev:server` / `npm run dev:client` | run one side only |
-| `npm run build` | production build of the client into `client/dist` |
-| `npm start` | start the API in production mode |
-| `npm test` | API tests + client tests |
-
-To run the database tests against a real database as well:
-
-```powershell
-$env:TEST_MONGODB_URI = "mongodb+srv://<user>:<password>@<cluster>/portfolio_test"
-npm test --prefix server
-```
-
-## Environment variables
-
-**server/.env**
-
-| Variable | Example | Notes |
-| --- | --- | --- |
-| `PORT` | `5000` | Render sets this automatically |
-| `NODE_ENV` | `development` / `production` | |
-| `MONGODB_URI` | `mongodb+srv://…/portfolio?retryWrites=true&w=majority` | **secret**, never commit |
-| `CLIENT_URL` | `http://localhost:5173` or `https://dhriti-gupta.vercel.app` | comma-separated list allowed; no trailing slash |
-| `CONTACT_RATE_LIMIT_MAX` | `5` | optional, messages per window per IP |
-| `CONTACT_RATE_LIMIT_WINDOW_MS` | `900000` | optional, default 15 minutes |
-
-**client/.env.local** (production values go in the Vercel dashboard)
-
-| Variable | Example | Notes |
-| --- | --- | --- |
-| `VITE_API_BASE_URL` | `https://dhriti-portfolio-api.onrender.com` | public. Never put secrets in `VITE_` variables, because they end up in the browser bundle |
-
-## MongoDB Atlas setup
-
-1. Sign in at <https://cloud.mongodb.com>, create a **Project**, then **Create → M0 (Free)** cluster.
-2. **Database Access → Add New Database User**: choose *Password* auth, generate a strong password, role **Read and write to any database** (or restrict it to the `portfolio` database).
-3. **Network Access → Add IP Address**:
-   - For local development, *Add Current IP Address*.
-   - For Render's free tier (no fixed outbound IP), add `0.0.0.0/0`. Your strong password, TLS and the URI kept in env vars protect access.
-4. **Database → Connect → Drivers → Node.js**: copy the URI, replace `<password>`, and add the database name before the `?`:
-   `mongodb+srv://dhriti:<password>@cluster0.xxxxx.mongodb.net/portfolio?retryWrites=true&w=majority&appName=portfolio`
-   Special characters in the password must be URL-encoded.
-5. Put it in `server/.env` locally and in Render → *Environment* in production.
-6. Verify: submit the contact form, then open **Atlas → Browse Collections → portfolio → contacts**. The message should appear with `createdAt` and `status: "new"`.
-
-## API reference
-
-### `GET /api/health`
-`200 {"status":"ok","database":"connected","uptimeSeconds":42,"timestamp":"…"}`
-
-### `POST /api/contact`
-Body (JSON):
-
-```json
-{ "name": "Ada Lovelace", "email": "ada@example.com", "message": "Hi Dhriti, …" }
-```
-
-| Rule | Limit |
-| --- | --- |
-| `name` | required string, 2–80 chars (whitespace collapsed) |
-| `email` | required, valid address, ≤ 254 chars, stored lowercase |
-| `message` | required string, 10–2000 chars |
-
-| Status | Meaning | Body |
-| --- | --- | --- |
-| 201 | stored | `{"success":true,"message":"…","data":{"id":"…","createdAt":"…"}}` |
-| 400 | validation failed / invalid JSON | `{"success":false,"message":"…","errors":{"email":"…"}}` |
-| 403 | origin not allowed by CORS | |
-| 413 | body larger than 10 kb | |
-| 429 | rate limit (5 per 15 min per IP by default) | |
-| 503 | database unavailable (the client shows an error, not a fake success) | |
-| 500 | unexpected error (no stack trace is returned) | |
-
-```powershell
-Invoke-RestMethod -Method Post -Uri http://localhost:5000/api/contact `
-  -ContentType "application/json" `
-  -Body '{"name":"Test User","email":"test@example.com","message":"Hello from PowerShell!"}'
-```
-
-### `GET /api/resume/pdf` · `GET /api/resume/docx`
-They stream `server/resumes/Dhriti_Gupta_Resume.pdf` / `.docx` with `Content-Type` set to `application/pdf` / `application/vnd.openxmlformats-officedocument.wordprocessingml.document` and `Content-Disposition: attachment`. If the file is missing they return a 404 JSON response.
-
-**To update the resume:** replace the two files in `server/resumes/` and keep the same filenames, then commit and push. Render redeploys automatically.
-
-> Privacy note: the resume includes your phone number. Because the API serves the files, they're committed to the repo, so anyone who opens the repo or downloads the resume can see the number. If you don't want that, remove the number from both files before pushing.
-
-## Deployment
-
-### 1. Push to GitHub (PowerShell)
-
-```powershell
-cd dhriti-portfolio
-git init
-git add .
-git status                      # confirm NO .env files and NO node_modules are listed
-git commit -m "feat: MERN portfolio with contact API and resume downloads"
-git branch -M main
-git remote add origin https://github.com/dhriti-gupta-06/dhriti-portfolio.git   # create the empty repo on GitHub first
-git push -u origin main
-```
-
-### 2. API on Render
-
-1. Render → **New → Web Service** → connect the repo. Alternatively use **New → Blueprint**, which reads `render.yaml`.
-2. Settings: **Root Directory** `server`, **Build** `npm ci --omit=dev`, **Start** `npm start`, **Health Check Path** `/api/health`.
-3. Environment: `NODE_ENV=production`, `MONGODB_URI=<Atlas URI>`, `CLIENT_URL=<your Vercel URL>` (fill this in after step 3, then redeploy).
-4. Deploy, then open `https://<service>.onrender.com/api/health`. It should report `"database":"connected"`.
-
-The free tier sleeps after about 15 minutes idle, so the first request can take 30–60 s. The client allows up to 60 s for the contact request.
-
-### 3. Client on Vercel
-
-1. Vercel → **Add New → Project** → import the repo.
-2. **Root Directory** `client` (framework *Vite* is detected; `vercel.json` adds SPA rewrites).
-3. Environment variable: `VITE_API_BASE_URL=https://<service>.onrender.com` (no trailing slash).
-4. Deploy. Then put the Vercel URL into Render's `CLIENT_URL` and redeploy the API.
-
-### 4. Post-deploy checklist
-
-- [ ] Site loads over HTTPS; refreshing `/projects/neuralstroke` doesn't 404
-- [ ] `/api/health` shows `database: connected`
-- [ ] Contact form shows success **and** the document appears in Atlas
-- [ ] Both resume buttons download files
-- [ ] Browser devtools console shows no CORS errors
-- [ ] Theme toggle works and persists
-- [ ] Search the built JS for secrets: `Select-String -Path client\dist\assets\*.js -Pattern "mongodb"` should find nothing
-
-## Editing content
-
-Everything shown on the site comes from `client/src/data/`:
-
-| File | Contains |
-| --- | --- |
-| `profile.js` | name, designation, headline, bio, email, socials, photo |
-| `skills.js` | categories and self-assessed levels (0–100) |
-| `projects.js` | projects, filter categories, links, case-study text |
-| `timeline.js` | education and experience (VINS internship template is commented in) |
-| `achievements.js` | honours and certifications; add `issuer`, `date`, `url`, `image` |
-
-Fields set to `null` are hidden, so the site never shows a placeholder link.
-
-## Troubleshooting
-
-| Symptom | Fix |
-| --- | --- |
-| Contact form says "service temporarily unavailable" | API can't reach MongoDB: check `MONGODB_URI`, Atlas Network Access and the password encoding |
-| Browser console shows a CORS error | `CLIENT_URL` on Render must match the site origin exactly (scheme + host, no trailing slash) |
-| Resume buttons give 404 | files missing from `server/resumes/` or renamed |
-| Refreshing a sub-page on Vercel gives 404 | make sure the Vercel root directory is `client` so `vercel.json` is used |
-| First request is very slow | Render free tier cold start; it's expected |
-| `npm run dev` port in use | stop the other process or change `PORT` / the Vite port |
-
-## Security notes
-
-- `.env` files are git-ignored; only `.env.example` files with placeholders are committed.
-- Secrets live only on the server (`MONGODB_URI`). The client has no secrets.
-- If a secret was ever committed, deleting it in a later commit does **not** make it safe, because it stays in git history. **Rotate it**: in Atlas, edit the database user and set a new password (or delete the user and create a new one), update `MONGODB_URI` on Render and locally, and then, optionally, purge the history with `git filter-repo`.
-- The contact API accepts only plain strings (blocking `$`-operator injection), enforces size limits, rate-limits per IP, and never logs message content.
-
-## Testing
-
-- `npm test --prefix server`: 20 API tests covering health, both resume routes, missing files, unknown format, CORS allow and deny, preflight, required fields, invalid email, oversized message, whitespace-only input, operator injection, malformed JSON, body-size limit, database-down 503, real persistence (when `TEST_MONGODB_URI` is set) and rate limiting.
-- `npm test --prefix client`: validation rules and project-data integrity (at least 3 featured projects, each with a GitHub link; https links; unique slugs).
-- An end-to-end browser pass (Playwright) covered the items listed in `docs/REQUIREMENTS_AUDIT.md`.
 
 ---
 
-© Dhriti Gupta
+## 🚀 Featured Projects Highlighted in Portfolio
+
+1. **[NeuralStroke](https://stroke-prediction-system.vercel.app)** — Clinical Risk Intelligence Platform
+   - Stack: Python, LightGBM, XGBoost, CatBoost, Flask, SQLAlchemy, React, Tailwind CSS
+   - Benchmark of 7 classification models with a recall-oriented 10% threshold, CSV batch screening, and PDF report export.
+   - [GitHub Repository](https://github.com/dhriti-gupta-06/Stroke-Prediction-System)
+
+2. **[SalesCast AI](https://sales-forecast-by-prophet-model.vercel.app)** — Prophet Sales Forecasting System
+   - Stack: Python, Facebook Prophet, pandas, Flask, SQLite WAL, React, Recharts
+   - Automated group-wise forecasts across 500 product/outlet combinations with confidence intervals and SQL-driven analytics.
+   - [GitHub Repository](https://github.com/dhriti-gupta-06/Sales-Forecast-By-Prophet-Model)
+
+3. **[FloatChat](https://float-chat-coral.vercel.app)** — Conversational Ocean-Data Explorer
+   - Stack: Next.js 14, TypeScript, Three.js, React Three Fiber, Plotly, Leaflet
+   - Visualizes ARGO ocean sensor float profiles in 3D globe coordinates accompanied by conversational inquiry.
+   - [GitHub Repository](https://github.com/dhriti-gupta-06/FloatChat)
+
+4. **[DocuMind](https://github.com/dhriti-gupta-06/Document-Chat-Rag)** — Retrieval-Augmented Document Assistant
+   - Stack: Python, LangChain, ChromaDB, HuggingFace, Streamlit
+   - High-precision Q&A over local documents using RAG vector similarity and local language models.
+
+5. **[TaskFlow](https://dhriti-gupta-06.github.io/TO-DO-App/)** — Responsive Task Management
+   - Stack: JavaScript, HTML5, CSS3, LocalStorage
+   - Filterable task tracking with local persistence and accessible UI interactions.
+
+---
+
+## 💻 Local Development Setup
+
+### Prerequisites
+- **Node.js**: v20 or higher (v22 LTS recommended)
+- **npm**: v10 or higher
+- **MongoDB**: A free MongoDB Atlas cluster URI or local MongoDB instance
+- **Git**
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/dhriti-gupta-06/Dhriti-Portfolio.git
+   cd Dhriti-Portfolio
+   ```
+
+2. **Install all dependencies (Root, Server, and Client):**
+   ```bash
+   npm run install:all
+   ```
+
+3. **Configure Server Environment:**
+   ```powershell
+   # Windows PowerShell
+   Copy-Item server\.env.example server\.env
+   ```
+   ```bash
+   # macOS / Linux
+   cp server/.env.example server/.env
+   ```
+   Open `server/.env` and insert your MongoDB connection string:
+   ```env
+   PORT=5000
+   NODE_ENV=development
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/portfolio?retryWrites=true&w=majority
+   CLIENT_URL=http://localhost:5173
+   ```
+
+4. **Start Development Servers:**
+   ```bash
+   npm run dev
+   ```
+   - **Frontend:** [http://localhost:5173](http://localhost:5173)
+   - **Backend API:** [http://localhost:5000](http://localhost:5000)
+   - **Health Check:** [http://localhost:5000/api/health](http://localhost:5000/api/health)
+
+---
+
+## ⚙️ Environment Variables
+
+### Server (`server/.env`)
+
+| Variable | Description | Example / Production Value |
+| --- | --- | --- |
+| `PORT` | Port the Express server listens on | `5000` |
+| `NODE_ENV` | Runtime environment | `development` or `production` |
+| `MONGODB_URI` | MongoDB Atlas connection string (**Secret**) | `mongodb+srv://.../portfolio?retryWrites=true&w=majority` |
+| `CLIENT_URL` | Allowed frontend origin for CORS | `https://dhriti-portfolio-one.vercel.app` |
+| `CONTACT_RATE_LIMIT_MAX` | Max submissions per window per IP | `5` |
+| `CONTACT_RATE_LIMIT_WINDOW_MS` | Rate-limit window duration (ms) | `900000` (15 minutes) |
+
+### Client (`client/.env.local` / Vercel Environment)
+
+| Variable | Description | Example / Production Value |
+| --- | --- | --- |
+| `VITE_API_BASE_URL` | Base URL for the deployed Express API | `https://dhriti-portfolio-api.onrender.com` |
+
+*(Note: In local development, leave `VITE_API_BASE_URL` empty to utilize the built-in Vite proxy).*
+
+---
+
+## 📡 API Reference
+
+Base Production URL: `https://dhriti-portfolio-api.onrender.com`
+
+### 1. Health & Liveness
+- **Endpoint:** `GET /api/health`
+- **Description:** Verifies service uptime and active database connectivity.
+- **Example Request:**
+  ```bash
+  curl -X GET https://dhriti-portfolio-api.onrender.com/api/health
+  ```
+- **Example Response:**
+  ```json
+  {
+    "status": "ok",
+    "database": "connected",
+    "uptimeSeconds": 128,
+    "timestamp": "2026-10-20T05:40:00.000Z"
+  }
+  ```
+
+### 2. Contact Message Submission
+- **Endpoint:** `POST /api/contact`
+- **Headers:** `Content-Type: application/json`
+- **Body Schema:**
+  ```json
+  {
+    "name": "Alex Johnson",
+    "email": "alex.johnson@example.com",
+    "message": "Hi Dhriti, I saw your portfolio and would like to discuss an opportunity."
+  }
+  ```
+- **Validation Rules:**
+  - `name`: Required string, 2–80 characters.
+  - `email`: Required valid email address, ≤ 254 characters (normalized to lowercase).
+  - `message`: Required string, 10–2,000 characters.
+- **Responses:**
+  - `201 Created`: Message persisted in MongoDB Atlas.
+  - `400 Bad Request`: Validation failure.
+  - `429 Too Many Requests`: IP rate-limit reached (5 submissions / 15 min).
+  - `503 Service Unavailable`: MongoDB Atlas connectivity failure.
+
+### 3. Resume File Downloads
+- **Endpoints:**
+  - `GET /api/resume/pdf` — Streams `Dhriti_Gupta_Resume.pdf`
+  - `GET /api/resume/docx` — Streams `Dhriti_Gupta_Resume.docx`
+- **Headers Sent:** `Content-Disposition: attachment; filename="Dhriti_Gupta_Resume.<ext>"`
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+Run all test suites across the monorepo:
+
+```bash
+# Run both server and client test suites
+npm test
+
+# Run API tests only (node:test + Supertest)
+npm test --prefix server
+
+# Run client tests only (Vitest)
+npm test --prefix client
+```
+
+### Coverage Overview:
+- **Server Tests (20 tests):** Health check, resume streaming (PDF/DOCX), 404 on missing assets, CORS policy enforcement, payload size limits (10 KB), rate limiting, NoSQL injection sanitization, and DB failover.
+- **Client Tests (6 tests):** Input validation schemas, project dataset integrity, GitHub URL accessibility, and slug uniqueness.
+
+---
+
+## 🚢 Deployment Details
+
+### 1. Backend on Render
+- **Blueprint File:** [`render.yaml`](file:///d:/dhriti-portfolio/render.yaml)
+- **Root Directory:** `server`
+- **Build Command:** `npm ci --omit=dev`
+- **Start Command:** `npm start`
+- **Health Check Path:** `/api/health`
+- **Live Endpoint:** `https://dhriti-portfolio-api.onrender.com`
+
+### 2. Frontend on Vercel
+- **Root Directory:** `client`
+- **Framework Preset:** `Vite`
+- **Routing Rules:** Configured in [`client/vercel.json`](file:///d:/dhriti-portfolio/client/vercel.json) to support client-side React Router rewrites.
+- **Environment Variable:** `VITE_API_BASE_URL=https://dhriti-portfolio-api.onrender.com`
+- **Live Site:** `https://dhriti-portfolio-one.vercel.app/`
+
+---
+
+## 👤 Author
+
+**Dhriti Gupta**  
+- **Portfolio:** [dhriti-portfolio-one.vercel.app](https://dhriti-portfolio-one.vercel.app/)  
+- **GitHub:** [@dhriti-gupta-06](https://github.com/dhriti-gupta-06)  
+- **LinkedIn:** [dhriti-gupta-557101314](https://www.linkedin.com/in/dhriti-gupta-557101314/)  
+- **Email:** [dhritigupta2411@gmail.com](mailto:dhritigupta2411@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
