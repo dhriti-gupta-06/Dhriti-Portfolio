@@ -14,6 +14,10 @@ Built as an end-to-end **MERN** application:
 - **Server:** Production-ready **Node.js + Express 5** REST API hosted on **Render**, featuring input sanitization, rate-limiting, security headers via Helmet, and resume streaming.
 - **Database:** Cloud-hosted **MongoDB Atlas** storing verified contact submissions through **Mongoose 9** schemas.
 
+- **Live site:** [https://dhriti-portfolio-one.vercel.app/](https://dhriti-portfolio-one.vercel.app/)
+- **API:** [https://dhriti-portfolio-api.onrender.com/api/health](https://dhriti-portfolio-api.onrender.com/api/health)
+- **Repository:** [https://github.com/dhriti-gupta-06/Dhriti-Portfolio](https://github.com/dhriti-gupta-06/Dhriti-Portfolio)
+
 ---
 
 ## 🔗 Quick Links
