@@ -52,12 +52,12 @@ export const achievements = [
   {
     id: 'python-for-everybody',
     kind: 'Certification',
-    title: 'Python for Everybody',
+    title: 'Programming for Everybody (Python)',
     issuer: "Coursera", // TODO(Dhriti): add issuer from the certificate
     description: null,
     date: null,
     url: "https://www.coursera.org/account/accomplishments/verify/IQY10D47BJV5",
-    image: null,
+    image: '/images/certs/python.png',
   },
   {
     id: 'exploring-c',
@@ -67,7 +67,7 @@ export const achievements = [
     description: null,
     date: null,
     url: "https://www.coursera.org/account/accomplishments/verify/RZAEASQX4P1S",
-    image: null,
+    image: '/images/certs/exploring_c.png',
   },
   {
     id: 'Database-Management-System-Part-1',
