@@ -53,7 +53,7 @@ export const achievements = [
     id: 'python-for-everybody',
     kind: 'Certification',
     title: 'Programming for Everybody (Python)',
-    issuer: "Coursera", // TODO(Dhriti): add issuer from the certificate
+    issuer: "Coursera", 
     description: null,
     date: null,
     url: "https://www.coursera.org/account/accomplishments/verify/IQY10D47BJV5",
@@ -63,7 +63,7 @@ export const achievements = [
     id: 'exploring-c',
     kind: 'Certification',
     title: 'Exploring C',
-    issuer: "Coursera", // TODO(Dhriti)
+    issuer: "Coursera", 
     description: null,
     date: null,
     url: "https://www.coursera.org/account/accomplishments/verify/RZAEASQX4P1S",
@@ -73,7 +73,7 @@ export const achievements = [
     id: 'Database-Management-System-Part-1',
     kind: 'Certification',
     title: 'Database Management System - Part 1',
-    issuer: "Infosys Springboard", // TODO(Dhriti)
+    issuer: "Infosys Springboard", 
     description: null,
     date: null,
     url: null,
